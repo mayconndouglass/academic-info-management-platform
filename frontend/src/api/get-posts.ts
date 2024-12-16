@@ -1,10 +1,11 @@
 import { api } from '@/lib/axios'
 
 interface GetPostQuery {
+  categorie: number | string
   pageIndex?: number | null
 }
 
-interface GetPregPostsResponse {
+interface GetPostsResponse {
   id: number
   date: string
   slug: string
@@ -19,19 +20,20 @@ interface GetPregPostsResponse {
   }
 }
 
-interface PregPostsPaginated {
-  posts: GetPregPostsResponse[]
+interface PostsPagination {
+  posts: GetPostsResponse[]
   totalItems: number
   totalPages: number
 }
 
-export async function getPregPosts({
+export async function getPosts({
   pageIndex,
-}: GetPostQuery): Promise<PregPostsPaginated> {
+  categorie,
+}: GetPostQuery): Promise<PostsPagination> {
   console.log('Entrou no arquivo da API')
-  const response = await api.get<GetPregPostsResponse[]>('/posts', {
+  const response = await api.get<GetPostsResponse[]>('/posts', {
     params: {
-      categories: 4,
+      categories: categorie,
       page: pageIndex,
       per_page: 16,
     },
