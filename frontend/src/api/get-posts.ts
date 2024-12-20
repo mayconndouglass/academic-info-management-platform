@@ -18,6 +18,7 @@ interface GetPostsResponse {
   content: {
     rendered: string
   }
+  categories: number[]
 }
 
 interface PostsPagination {
