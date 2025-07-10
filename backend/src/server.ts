@@ -1,7 +1,7 @@
-import { fastify } from "fastify"
+import "dotenv/config"
 
-const server = fastify()
+import { app } from "./app"
 
-server.get("/", () => "Hello World")
+const port = Number(process.env.PORT) || 3333
 
-server.listen({ port: 3333 }, () => console.log("Server running"))
+app.listen({ port }, () => console.log("🚀 Server running"))
