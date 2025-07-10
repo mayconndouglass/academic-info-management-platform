@@ -1,8 +1,7 @@
 import { Index as MeiliIndex } from "meilisearch"
 
 import { FetchPageError, MeiliTaskFailedError } from "../errors"
-import { Post } from "../types/post" 
-import { WPPostFormat } from "../types/wp-post-format"
+import { Post, RawWPPost } from "../types" 
 
 export class PopulateMeiliSearchService { 
   constructor(
@@ -28,7 +27,7 @@ export class PopulateMeiliSearchService {
 
     for (let i = startPage; i <= endPage; i ++) {
       const response = await fetch(`${url}&page=${i}`)
-      const data = await response.json() as WPPostFormat[]
+      const data = await response.json() as RawWPPost[]
 
       if (response.status !== 200) {
         console.log("Error Content", response.text)
