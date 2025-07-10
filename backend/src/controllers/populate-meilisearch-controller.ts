@@ -4,7 +4,7 @@ import z from "zod"
 import { env } from "../env"
 import { FetchPageError, MeiliTaskFailedError } from "../errors"
 import { meiliClient } from "../libs/meili"
-import { PopulateMeiliSearchService } from "../services/populate-meilisearch"
+import { PopulateMeiliSearchService } from "../services"
 
 export class PopulateMeiliSearchController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
