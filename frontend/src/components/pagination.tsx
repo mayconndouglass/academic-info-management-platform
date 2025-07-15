@@ -4,6 +4,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 
 import { Button } from './ui/button'
 
@@ -11,16 +12,21 @@ export interface PaginationProps {
   pageIndex: number
   totalCount: number
   perPage: number
-  onPageChange: (pageIndex: number) => Promise<void> | void
 }
 
 export function Pagination({
   pageIndex,
   totalCount,
   perPage,
-  onPageChange,
 }: PaginationProps) {
+  const [searchParams, setSearchParams] = useSearchParams()
   const pages = Math.ceil(totalCount / perPage) || 1
+
+  function handlePageChange(page: number) {
+    const newParams = new URLSearchParams(searchParams)
+    newParams.set('page', page.toString())
+    setSearchParams(newParams)
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -35,7 +41,7 @@ export function Pagination({
 
         <div className="flex items-center gap-2">
           <Button
-            onClick={() => onPageChange(1)}
+            onClick={() => handlePageChange(1)}
             variant={'outline'}
             className="h-8 w-8 p-0"
             disabled={pageIndex === 1}
@@ -45,7 +51,7 @@ export function Pagination({
           </Button>
 
           <Button
-            onClick={() => onPageChange(pageIndex - 1)}
+            onClick={() => handlePageChange(pageIndex - 1)}
             variant={'outline'}
             className="h-8 w-8 p-0"
             disabled={pageIndex === 1}
@@ -55,7 +61,7 @@ export function Pagination({
           </Button>
 
           <Button
-            onClick={() => onPageChange(pageIndex + 1)}
+            onClick={() => handlePageChange(pageIndex + 1)}
             variant={'outline'}
             className="h-8 w-8 p-0"
             disabled={pageIndex === pages}
@@ -65,7 +71,7 @@ export function Pagination({
           </Button>
 
           <Button
-            onClick={() => onPageChange(pages)}
+            onClick={() => handlePageChange(pages)}
             variant={'outline'}
             className="h-8 w-8 p-0"
             disabled={pageIndex === pages}
