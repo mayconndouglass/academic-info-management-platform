@@ -1,5 +1,6 @@
 export * from './card-skeleton'
 export * from './footer'
-export * from './header'
+export * from './main-header'
 export * from './pagination'
 export * from './theme/theme-toggle'
+export * from './post-card'
