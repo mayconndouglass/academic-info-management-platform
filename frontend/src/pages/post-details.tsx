@@ -2,10 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { ArrowLeft } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 
-import { getPostDetails } from '@/api/get-post-details'
-import { Footer } from '@/components/footer'
-import { formatDate } from '@/utils/format-date'
-import { getNameCategorysByNumber } from '@/utils/get-name-categorys-by-number'
+import { getPostDetails } from '@/api'
+import { Footer } from '@/components'
+import { formatDate, getNameCategorysByNumber } from '@/utils'
 
 export const PostDetails = () => {
   const { id } = useParams()
