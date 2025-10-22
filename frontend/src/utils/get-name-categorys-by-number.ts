@@ -4,6 +4,7 @@ const numberCategories: Record<number, string> = {
   8: 'PRAD',
   7: 'PROP',
   6: 'PROPLAN',
+  11: 'PRAD',
 }
 
 export function getNameCategorysByNumber(categories: number[]) {
