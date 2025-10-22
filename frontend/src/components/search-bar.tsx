@@ -2,7 +2,7 @@ import { Search } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { useSearch } from '@/hooks/useSearch'
+import { useSearch } from '@/hooks/use-search'
 import { cn } from '@/lib/utils'
 
 import { SearchItemSkeleton } from './search-item-skeleton'
