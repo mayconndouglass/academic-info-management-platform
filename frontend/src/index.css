@@ -66,17 +66,42 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply h-full bg-background text-foreground;
   }
 
   .content-paragraph > p,
   .contente-paragraph > p > span,
   .contente-paragraph > p > span > span {
-    @apply text-left text-base font-normal lowercase;
+    @apply text-left text-base font-normal lowercase leading-5 text-foreground/85;
   }
 
   .content-paragraph > p > a {
-    @apply text-blue-600;
+    @apply text-blue-900;
+  }
+
+  .link-color > p > a {
+    @apply text-blue-900;
+  }
+
+  .search-content-preview {
+    /* força truncamento multi-line em qualquer conteúdo */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* número de linhas desejado */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* opcional: uniformizar line-height pra prever altura */
+    line-height: 1.25rem;
+    max-height: calc(
+      1.25rem * 3
+    ); /* evita saltos se o conteúdo interno tiver margens */
+  }
+
+  /* já preserve essas regras pra remover imagens/iframes */
+  .search-content-preview img,
+  .search-content-preview figure,
+  .search-content-preview iframe {
+    display: none !important;
   }
 }
 
@@ -89,6 +114,10 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+[data-radix-scroll-area-viewport] {
+  max-width: 100%;
 }
 
 .multiline-title-truncate {
