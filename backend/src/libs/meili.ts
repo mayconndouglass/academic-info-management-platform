@@ -1,8 +1,9 @@
-import "dotenv/config"
-
 import { MeiliSearch } from "meilisearch"
 
+import { env } from "../env"
+
 export const meiliClient = new MeiliSearch({
-  host: process.env.MEILI_HOST ?? "http://localhost:7700",
-  apiKey: process.env.MEILI_MASTER_KEY
+  host: env.MEILI_HOST ?? "http://localhost:7700",
+  // apiKey: 
+  apiKey: "mXMg77UymYL_xsi7CPj3IX4eCPfb4hjJ02lL5U3t8fI"
 })
