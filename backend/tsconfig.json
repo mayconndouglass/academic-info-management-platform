@@ -4,12 +4,17 @@
 
   "compilerOptions": {
     "lib": ["es2023"],
-    "module": "nodenext",
+    "module": "commonjs",
     "target": "es2022",
-
+    "outDir": "dist",
+    "rootDir": "src",
+    "ignoreDeprecations": "5.0",
+    
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16"
-  }
+    "moduleResolution": "node",
+  },
+  "exclude": ["zindexar", "src/scripts/manual-sync.ts", "src/services/testes", "src/controllers/fetch-posts-from-meilisearch-controller.ts",
+  "src/controllers/search-posts-from-meilisearch-controller.ts"]
 }
