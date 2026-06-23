@@ -7,7 +7,8 @@
     "crawler": "tsx src/scriptss/crawler.ts",
     "cron": "tsx src/scriptss/cron.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-api": "tsx src/scriptss/testApi.ts"
+    "test-api": "tsx src/scriptss/testApi.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

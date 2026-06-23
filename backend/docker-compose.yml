@@ -1,0 +1,23 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3333:3333"
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - meilisearch
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILISEARCH_MASTER_KEY=${MEILISEARCH_API_KEY}
+    volumes:
+      - meilisearch_data:/meili_data
+    restart: unless-stopped
+
+volumes:
+  meilisearch_data:

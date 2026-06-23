@@ -2,16 +2,17 @@ import "dotenv/config"
 
 import { exec } from "node:child_process"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
+// import { fileURLToPath } from "node:url"
 import { promisify } from "node:util"
 
 const execAsync = promisify(exec)
 
 // Necessário para ESM — equivalente ao __dirname do CommonJS
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = path.dirname(__filename)
 
-const CRAWLER_PATH = path.join(__dirname, "crawler.ts")
+// const CRAWLER_PATH = path.join(__dirname, "crawler.ts")
+const CRAWLER_PATH = path.join(process.cwd(), "src", "scriptss", "crawler.ts")
 
 // Intervalo em horas — a cada 12 horas
 // Ajuste conforme necessário
