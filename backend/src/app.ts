@@ -3,14 +3,14 @@ import { fastify } from "fastify"
 
 import {
   FetchDocumentsController,
-  FetchPostsFromMeilisearchController,
+  // FetchPostsFromMeilisearchController,
   GetDocumentDetailsController,
-  GetPostDetailsFromMeilisearchController,
+  // GetPostDetailsFromMeilisearchController,
   PopulateMeiliSearchController,
   SearchDocumentsController,
   SearchDocumentsInstantController,
   SearchPostController,
-  SearchPostsFromMeilisearchController,
+  // SearchPostsFromMeilisearchController,
   UpdateMeilisearchController,
 } from "./controllers"
 
@@ -24,9 +24,9 @@ app.register(cors, {
 const populateMeilisearchController = new PopulateMeiliSearchController()
 const updateMeilisearchController = new UpdateMeilisearchController()
 const searchPostController = new SearchPostController()
-const fetchPostsFromMeilisearchController = new FetchPostsFromMeilisearchController()
-const searchPostsFromMeilisearchController = new SearchPostsFromMeilisearchController()
-const getPostDetailsFromMeilisearchController = new GetPostDetailsFromMeilisearchController()
+// const fetchPostsFromMeilisearchController = new FetchPostsFromMeilisearchController()
+// const searchPostsFromMeilisearchController = new SearchPostsFromMeilisearchController()
+// const getPostDetailsFromMeilisearchController = new GetPostDetailsFromMeilisearchController()
 
 // Controllers de documentos
 const fetchDocumentsController = new FetchDocumentsController()
@@ -35,15 +35,15 @@ const searchDocumentsInstantController = new SearchDocumentsInstantController()
 const getDocumentDetailsController = new GetDocumentDetailsController()
 
 // Rotas existentes
-app.get("/post/:postId", (request, reply) =>
-  getPostDetailsFromMeilisearchController.handle(request, reply)
-)
-app.get("/posts-meilisearch/search", (request, reply) =>
-  searchPostsFromMeilisearchController.handle(request, reply)
-)
-app.get("/posts-meilisearch", (request, reply) =>
-  fetchPostsFromMeilisearchController.handle(request, reply)
-)
+// app.get("/post/:postId", (request, reply) =>
+//   getPostDetailsFromMeilisearchController.handle(request, reply)
+// )
+// app.get("/posts-meilisearch/search", (request, reply) =>
+//   searchPostsFromMeilisearchController.handle(request, reply)
+// )
+// app.get("/posts-meilisearch", (request, reply) =>
+//   fetchPostsFromMeilisearchController.handle(request, reply)
+// )
 app.get("/search-post", (request, reply) =>
   searchPostController.handle(request, reply)
 )
