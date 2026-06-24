@@ -9,6 +9,15 @@ services:
     depends_on:
       - meilisearch
 
+  cron:
+    build: .
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - meilisearch
+    command: npx tsx src/scriptss/cron.ts
+
   meilisearch:
     image: getmeili/meilisearch:latest
     ports:
