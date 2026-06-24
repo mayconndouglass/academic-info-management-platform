@@ -6,6 +6,7 @@ import { categorize } from "./utils/categorize"
 import { deduplicate } from "./utils/deduplicate"
 import { indexDocuments } from "./utils/meilisearch"
   
+export { main }
 
 async function main() {
   console.log("🚀 Iniciando crawler...\n")

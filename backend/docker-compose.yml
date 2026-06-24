@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
     depends_on:
       - meilisearch
-    command: npx tsx src/scriptss/cron.ts
+    command: node dist/scriptss/cron.js
 
   meilisearch:
     image: getmeili/meilisearch:latest
