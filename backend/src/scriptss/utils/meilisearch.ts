@@ -5,8 +5,8 @@ import type { Document } from "./normalizer.ts"
 const INDEX_NAME = "documents"
 
 const client = new MeiliSearch({
-  host: process.env.MEILISEARCH_HOST ?? "http://localhost:7700",
-  apiKey: process.env.MEILISEARCH_API_KEY,
+  host: process.env.MEILI_HOST ?? "http://localhost:7700",
+  apiKey: process.env.MEILI_MASTER_KEY,
 })
 
 // Configura o índice com os atributos corretos para o nosso modelo
