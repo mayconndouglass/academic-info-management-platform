@@ -7,7 +7,7 @@ export const CardSkeleton = () => {
     return (
       <Card
         key={i}
-        className="relative max-h-[248px] min-h-[240px] w-full cursor-pointer overflow-hidden p-4 transition-shadow duration-300 hover:shadow-xl"
+        className="relative min-h-[200px] w-full animate-pulse overflow-hidden rounded-xl p-4 pb-16 transition-opacity duration-300"
       >
         <CardContent className="p-0">
           <Skeleton className="mb-2 h-8 w-8 flex-shrink-0 rounded-lg" />

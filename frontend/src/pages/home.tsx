@@ -89,10 +89,17 @@ export function Home() {
           </div>
 
           <div className="cards grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {!isLoadingOrFetching &&
-              documents.map((doc) => <DocumentCard key={doc.id} {...doc} />)}
+            {isLoading && <CardSkeleton />}
 
-            {isLoadingOrFetching && <CardSkeleton />}
+            {!isLoading && (
+              <div
+                className={`contents transition-opacity duration-300 ${isFetching ? 'opacity-0' : 'opacity-100'}`}
+              >
+                {documents.map((doc) => (
+                  <DocumentCard key={doc.id} {...doc} />
+                ))}
+              </div>
+            )}
           </div>
 
           {!isLoadingOrFetching && documents.length === 0 && (

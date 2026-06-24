@@ -9,7 +9,7 @@ import { Card, CardContent } from './ui/card'
 export const DocumentCard = (doc: Document) => {
   return (
     <Link to={`/document/${doc.id}`}>
-      <Card className="group relative w-full cursor-pointer overflow-hidden rounded-xl p-4 pb-16 transition-shadow duration-300 hover:shadow-xl">
+      <Card className="group relative min-h-[200px] w-full cursor-pointer overflow-hidden rounded-xl p-4 pb-16 transition-shadow duration-300 hover:shadow-xl">
         {/* Botão de detalhes — navega para a página de detalhe do documento */}
         <Link
           to={`/document/${doc.id}`}
