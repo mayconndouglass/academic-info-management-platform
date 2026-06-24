@@ -1,65 +1,103 @@
-import { CategoryType } from '@/types/category-type'
+import { Menu } from 'lucide-react'
+
+import {
+  DOCUMENT_CATEGORIES,
+  DocumentCategoryType,
+} from '@/hooks/use-document-category'
 
 import logo from '../../public/uespi-logo.webp'
-import { ThemeToggle } from './theme/theme-toggle'
+// import { ThemeToggle } from './theme/theme-toggle'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from './ui/sheet'
 
 type MainHeaderProps = {
-  selectedCategorie: CategoryType
-  onCategorieChange: (categorie: CategoryType) => void
+  selectedCategory: DocumentCategoryType
+  onCategoryChange: (category: DocumentCategoryType) => void
 }
 
 export const MainHeader = ({
-  onCategorieChange,
-  selectedCategorie,
+  onCategoryChange,
+  selectedCategory,
 }: MainHeaderProps) => {
-  const categories: CategoryType[] = [
-    'todos',
-    'prex',
-    'preg',
-    'prad',
-    'prop',
-    'proplan',
-  ]
-
   return (
     <header className="w-full">
-      <div className="container mx-auto flex items-center justify-between gap-6 border-b px-4 py-4">
+      {/* Linha 1 — igual ao original */}
+      <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-4">
         <div className="flex items-center">
           <img src={logo} alt="Uespi" className="h-20 w-20" />
-          <span className="text-xl font-medium text-foreground">
+          <span className="hidden text-xl font-medium text-foreground sm:block">
             Universidade Estadual do Piauí
           </span>
         </div>
 
-        <nav className="absolute left-1/2 flex h-6 -translate-x-1/2 transform justify-around space-x-4 lg:space-x-6">
-          <ul className="flex gap-6">
-            {categories.map((categorie) => (
-              <li
-                key={categorie}
-                role="button"
-                tabIndex={0}
-                className={`text-sm font-medium hover:cursor-pointer ${
-                  selectedCategorie === categorie
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-                onClick={() => onCategorieChange(categorie)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    onCategorieChange(categorie)
-                  }
-                }}
-              >
-                {categorie.toUpperCase()}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="flex gap-4">
+          {/* <ThemeToggle /> */}
 
-        <div>
-          <ThemeToggle />
+          <Sheet>
+            <SheetTrigger className="block md:hidden">
+              <Menu className="h-6 w-6" />
+            </SheetTrigger>
+            <SheetContent side="left">
+              <SheetHeader>
+                <SheetTitle>Categorias</SheetTitle>
+              </SheetHeader>
+              <ul className="mt-6 flex flex-col gap-4">
+                {DOCUMENT_CATEGORIES.map((category) => (
+                  <li
+                    key={category}
+                    role="button"
+                    tabIndex={0}
+                    className={`text-sm font-medium hover:cursor-pointer ${
+                      selectedCategory === category
+                        ? 'text-foreground'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                    onClick={() => onCategoryChange(category)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        onCategoryChange(category)
+                      }
+                    }}
+                  >
+                    {category === 'todos' ? 'Todos' : category}
+                  </li>
+                ))}
+              </ul>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
+
+      {/* Linha 2 — menu */}
+      <nav className="container mx-auto hidden border-b px-4 pb-4 md:block">
+        <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          {DOCUMENT_CATEGORIES.map((category) => (
+            <li
+              key={category}
+              role="button"
+              tabIndex={0}
+              className={`text-sm font-medium hover:cursor-pointer ${
+                selectedCategory === category
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+              onClick={() => onCategoryChange(category)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  onCategoryChange(category)
+                }
+              }}
+            >
+              {category === 'todos' ? 'Todos' : category}
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   )
 }

@@ -1,4 +1,4 @@
-import { api } from '@/lib/axios'
+import { wpApi } from '@/lib/axios'
 
 interface GetPostDetailsProps {
   id: string | undefined
@@ -21,7 +21,7 @@ interface GetPostDetailsResponse {
 }
 
 export async function getPostDetails({ id }: GetPostDetailsProps) {
-  const response = await api.get<GetPostDetailsResponse>(`/posts/${id}`)
+  const response = await wpApi.get<GetPostDetailsResponse>(`/posts/${id}`)
 
   return response.data
 }

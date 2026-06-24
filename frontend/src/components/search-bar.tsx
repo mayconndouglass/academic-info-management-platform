@@ -2,16 +2,16 @@ import { Search } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { useSearch } from '@/hooks/use-search'
+import { useDocumentSearch } from '@/hooks/use-document-search'
 import { cn } from '@/lib/utils'
 
+import { DocumentSearchResultItem } from './document-search-result-item'
 import { SearchItemSkeleton } from './search-item-skeleton'
-import { SearchResultItem } from './search-result-item'
 import { Input } from './ui/input'
 import { ScrollArea } from './ui/scroll-area'
 
 export const SearchBar = () => {
-  const { input, handleChange, results, loading } = useSearch()
+  const { input, handleChange, results, loading } = useDocumentSearch()
   const [searchParams, setSearchParams] = useSearchParams()
   const containerRef = useRef<HTMLDivElement>(null)
   const [dropDownIsOpen, setDropDownIsOpen] = useState(false)
@@ -36,17 +36,24 @@ export const SearchBar = () => {
 
   const handleSearchSubmit = (query: string) => {
     const params = new URLSearchParams(searchParams)
-
     params.set('search', query)
     params.set('page', '1')
-
+    params.delete('category') // limpa o filtro de categoria ao buscar
     setSearchParams(params)
     setDropDownIsOpen(false)
+  }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange(e)
+    if (e.target.value === '') {
+      const params = new URLSearchParams(searchParams)
+      params.delete('search')
+      params.set('page', '1')
+      setSearchParams(params, { replace: true })
+    }
   }
 
   return (
     <div ref={containerRef} className="relative mx-auto max-w-2xl">
-      {/* busca */}
       <form
         onSubmit={(e) => {
           e.preventDefault()
@@ -55,7 +62,7 @@ export const SearchBar = () => {
       >
         <Input
           value={input}
-          onChange={handleChange}
+          onChange={handleInputChange}
           onFocus={() => {
             if (input.length > 0) {
               setDropDownIsOpen(true)
@@ -96,7 +103,7 @@ export const SearchBar = () => {
               ) : results.length > 0 ? (
                 <div className="w-full">
                   {results.map((item) => (
-                    <SearchResultItem item={item} key={item.id} />
+                    <DocumentSearchResultItem item={item} key={item.id} />
                   ))}
                 </div>
               ) : (

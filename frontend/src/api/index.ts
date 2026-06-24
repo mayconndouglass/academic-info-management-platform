@@ -1,2 +1,10 @@
 export * from './get-posts'
 export * from './get-post-details'
+export * from './get-posts-from-meilisearch'
+export * from './search-posts-from-meilisearch'
+export * from './get-post-details-from-meilisearch'
+
+export * from './get-documents-from-meilisearch'
+export * from './search-document-from-meilisearch'
+export * from './search-document-instant'
+export * from './get-document-details'

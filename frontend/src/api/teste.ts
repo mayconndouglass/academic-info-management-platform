@@ -12,17 +12,17 @@ interface PostsPagination {
   totalPages: number
 }
 
-export async function GetPosts({
-  pageIndex,
-  categorie,
-}: GetPostQuery): Promise<PostsPagination> {
-  const response = await wpApi.get<RawWPPost[]>('/posts', {
+export async function GetPosts(): Promise<PostsPagination> {
+  const response = await wpApi.get<RawWPPost[]>('/media', {
     params: {
-      categories: categorie,
-      page: pageIndex,
-      per_page: 16,
+      page: 1,
+      per_page: 100,
+      mime_type: 'application/pdf',
+      search: 'resolucao',
     },
   })
+
+  console.log('RESONSE IN', response)
 
   const totalItems = response.headers['x-wp-total']
   const totalPages = response.headers['x-wp-totalpages']
@@ -33,3 +33,7 @@ export async function GetPosts({
     totalPages: parseInt(totalPages),
   }
 }
+
+const response = GetPosts()
+
+console.log('response', response)

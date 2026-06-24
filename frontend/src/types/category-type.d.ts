@@ -5,3 +5,5 @@ export type CategoryType =
   | 'prad'
   | 'prop'
   | 'proplan'
+  | 'sisu'
+  | 'geral'

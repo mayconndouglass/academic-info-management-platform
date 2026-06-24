@@ -10,33 +10,36 @@ export const nameCategories: Record<CategoryType, string> = {
   prop: '7',
   proplan: '6',
   todos: '4,5,8,7,6',
+  geral: '19',
+  sisu: '923',
 }
 
-export function useCategorie() {
-  const [selectedCategorie, setSelectedCategorie] =
+export function useCategory() {
+  const [selectedCategory, setSelectedCategory] =
     useState<CategoryType>('todos')
   const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
-    const categorieParam = searchParams.get('categorie') || 'todos'
+    const categorieParam = searchParams.get('category') || 'todos'
 
-    setSelectedCategorie(categorieParam as CategoryType)
+    setSelectedCategory(categorieParam as CategoryType)
   }, [searchParams])
 
-  function handleCategorieChange(categorie: CategoryType) {
-    setSelectedCategorie(categorie)
+  function handleCategoryChange(category: CategoryType) {
+    setSelectedCategory(category)
 
     setSearchParams((state) => {
-      state.set('categorie', categorie)
+      state.set('category', category)
       state.set('page', '1')
       return state
     })
   }
 
   return {
-    selectedCategorie,
+    selectedCategory,
     searchParams,
-    handleCategorieChange,
+    setSearchParams,
+    handleCategoryChange,
     nameCategories,
   }
 }
