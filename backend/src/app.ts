@@ -17,7 +17,10 @@ import {
 export const app = fastify()
 
 app.register(cors, {
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://tcc.maycon.codes"
+  ],
 })
 
 // Controllers existentes
